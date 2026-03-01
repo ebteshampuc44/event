@@ -36,7 +36,7 @@ const EventDetail = () => {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back button */}
-        <Link to="/events" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-6">
+        <Link to="/events" className="inline-flex items-center text-[#FCEB00] hover:text-[#FCEB00]/80 mb-6">
           ← Back to Events
         </Link>
 
@@ -53,19 +53,19 @@ const EventDetail = () => {
             </div>
 
             {/* Event Details */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 mb-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-[#FCEB00]/10 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
                     {event.category}
                   </span>
                   <h1 className="text-3xl font-bold mt-3 text-gray-900">{event.title}</h1>
                 </div>
                 <div className="flex gap-2">
-                  <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600">
+                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-gray-600">
                     <Share2 className="w-5 h-5" />
                   </button>
-                  <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-600">
+                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-gray-600">
                     <Heart className="w-5 h-5" />
                   </button>
                 </div>
@@ -73,28 +73,28 @@ const EventDetail = () => {
 
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="flex items-center text-gray-600">
-                  <Calendar className="w-5 h-5 mr-2 text-blue-500" />
+                  <Calendar className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
                     <p className="text-sm text-gray-500">Date</p>
                     <p className="font-medium text-gray-900">{event.date}</p>
                   </div>
                 </div>
                 <div className="flex items-center text-gray-600">
-                  <Clock className="w-5 h-5 mr-2 text-blue-500" />
+                  <Clock className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
                     <p className="text-sm text-gray-500">Time</p>
                     <p className="font-medium text-gray-900">{event.time}</p>
                   </div>
                 </div>
                 <div className="flex items-center text-gray-600">
-                  <MapPin className="w-5 h-5 mr-2 text-blue-500" />
+                  <MapPin className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
                     <p className="text-sm text-gray-500">Location</p>
                     <p className="font-medium text-gray-900">{event.location}</p>
                   </div>
                 </div>
                 <div className="flex items-center text-gray-600">
-                  <Users className="w-5 h-5 mr-2 text-blue-500" />
+                  <Users className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
                     <p className="text-sm text-gray-500">Organizer</p>
                     <p className="font-medium text-gray-900">{event.organizer}</p>
@@ -102,14 +102,14 @@ const EventDetail = () => {
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-6">
+              <div className="border-t border-[#FCEB00]/30 pt-6">
                 <h2 className="text-xl font-bold mb-4 text-gray-900">About This Event</h2>
                 <p className="text-gray-600 leading-relaxed">{event.description}</p>
               </div>
             </div>
 
             {/* Schedule */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 mb-6">
               <h2 className="text-xl font-bold mb-4 text-gray-900">Schedule</h2>
               <div className="space-y-3">
                 {event.schedule.map((item, index) => (
@@ -122,19 +122,19 @@ const EventDetail = () => {
             </div>
 
             {/* Speakers */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6">
               <h2 className="text-xl font-bold mb-4 text-gray-900">Speakers</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {event.speakers.map((speaker, index) => (
-                  <div key={index} className="text-center p-4 border border-gray-200 rounded-lg hover:shadow-md transition">
-                    <div className="w-20 h-20 bg-blue-100 rounded-full mx-auto mb-3 flex items-center justify-center">
-                      <span className="text-2xl text-blue-600 font-bold">
+                  <div key={index} className="text-center p-4 border border-[#FCEB00]/30 rounded-lg hover:shadow-md transition">
+                    <div className="w-20 h-20 bg-[#FCEB00]/10 rounded-full mx-auto mb-3 flex items-center justify-center">
+                      <span className="text-2xl text-[#FCEB00] font-bold">
                         {speaker.name.charAt(0)}
                       </span>
                     </div>
                     <h3 className="font-bold text-gray-900">{speaker.name}</h3>
                     <p className="text-sm text-gray-500">{speaker.role}</p>
-                    <p className="text-sm text-blue-600">{speaker.company}</p>
+                    <p className="text-sm text-[#FCEB00]">{speaker.company}</p>
                   </div>
                 ))}
               </div>
@@ -143,9 +143,9 @@ const EventDetail = () => {
 
           {/* Sidebar - Booking Card */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 sticky top-6">
               <div className="text-center mb-6">
-                <span className="text-3xl font-bold text-blue-600">{event.price}</span>
+                <span className="text-3xl font-bold text-[#FCEB00]">{event.price}</span>
                 <span className="text-gray-500"> per person</span>
               </div>
 
@@ -156,7 +156,7 @@ const EventDetail = () => {
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className="bg-blue-600 h-2 rounded-full"
+                    className="bg-[#FCEB00] h-2 rounded-full"
                     style={{ width: `${(event.availableTickets / 500) * 100}%` }}
                   ></div>
                 </div>
@@ -166,7 +166,7 @@ const EventDetail = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Number of Tickets
                 </label>
-                <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white">
+                <select className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                     <option key={num} value={num}>{num} ticket{num > 1 ? 's' : ''}</option>
                   ))}
@@ -175,16 +175,16 @@ const EventDetail = () => {
 
               <Link
                 to={`/booking/${event.id}`}
-                className="block w-full bg-blue-600 text-white text-center px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 mb-4 shadow-md"
+                className="block w-full bg-[#FCEB00] text-gray-800 text-center px-6 py-3 rounded-lg font-semibold hover:bg-[#FCEB00]/90 transition duration-300 mb-4 shadow-md"
               >
                 Book Now
               </Link>
 
-              <button className="w-full border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">
+              <button className="w-full border-2 border-[#FCEB00] text-[#FCEB00] px-6 py-3 rounded-lg font-semibold hover:bg-[#FCEB00]/10 transition duration-300">
                 Save to Wishlist
               </button>
 
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-[#FCEB00]/30">
                 <h3 className="font-semibold mb-3 text-gray-900">What's included:</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li className="flex items-center">

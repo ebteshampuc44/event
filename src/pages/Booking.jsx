@@ -53,7 +53,7 @@ const Booking = () => {
             {[1, 2, 3].map((num) => (
               <div key={num} className="flex-1 text-center">
                 <div className={`w-10 h-10 mx-auto rounded-full flex items-center justify-center font-bold
-                  ${step >= num ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'}`}>
+                  ${step >= num ? 'bg-[#FCEB00] text-gray-800' : 'bg-gray-200 text-gray-500'}`}>
                   {step > num ? <CheckCircle className="w-5 h-5" /> : num}
                 </div>
                 <p className="text-sm mt-2 font-medium text-gray-600">
@@ -65,7 +65,7 @@ const Booking = () => {
           <div className="relative mt-2">
             <div className="absolute top-0 left-0 h-1 bg-gray-200 w-full"></div>
             <div
-              className="absolute top-0 left-0 h-1 bg-blue-600 transition-all duration-300"
+              className="absolute top-0 left-0 h-1 bg-[#FCEB00] transition-all duration-300"
               style={{ width: `${((step - 1) / 2) * 100}%` }}
             ></div>
           </div>
@@ -75,7 +75,7 @@ const Booking = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Booking Form */}
           <div className="md:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6">
               <h2 className="text-2xl font-bold mb-6 text-gray-900">
                 {step === 1 && 'Select Tickets'}
                 {step === 2 && 'Your Information'}
@@ -93,7 +93,7 @@ const Booking = () => {
                         name="tickets"
                         value={formData.tickets}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                       >
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                           <option key={num} value={num}>{num} ticket{num > 1 ? 's' : ''}</option>
@@ -101,19 +101,19 @@ const Booking = () => {
                       </select>
                     </div>
 
-                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                      <h3 className="font-semibold mb-2 text-blue-900">Ticket Includes:</h3>
-                      <ul className="space-y-1 text-sm text-blue-700">
+                    <div className="bg-[#FCEB00]/10 p-4 rounded-lg border border-[#FCEB00]/30">
+                      <h3 className="font-semibold mb-2 text-gray-800">Ticket Includes:</h3>
+                      <ul className="space-y-1 text-sm text-gray-700">
                         <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 mr-2 text-blue-500" />
+                          <CheckCircle className="w-4 h-4 mr-2 text-[#FCEB00]" />
                           Full access to all sessions
                         </li>
                         <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 mr-2 text-blue-500" />
+                          <CheckCircle className="w-4 h-4 mr-2 text-[#FCEB00]" />
                           Lunch and refreshments
                         </li>
                         <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 mr-2 text-blue-500" />
+                          <CheckCircle className="w-4 h-4 mr-2 text-[#FCEB00]" />
                           Networking opportunities
                         </li>
                       </ul>
@@ -133,7 +133,7 @@ const Booking = () => {
                           name="firstName"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -146,7 +146,7 @@ const Booking = () => {
                           name="lastName"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -161,7 +161,7 @@ const Booking = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -175,7 +175,7 @@ const Booking = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -194,7 +194,7 @@ const Booking = () => {
                         value={formData.cardNumber}
                         onChange={handleInputChange}
                         placeholder="1234 5678 9012 3456"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -210,7 +210,7 @@ const Booking = () => {
                           value={formData.expiryDate}
                           onChange={handleInputChange}
                           placeholder="MM/YY"
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -224,7 +224,7 @@ const Booking = () => {
                           value={formData.cvv}
                           onChange={handleInputChange}
                           placeholder="123"
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -239,7 +239,7 @@ const Booking = () => {
                         name="nameOnCard"
                         value={formData.nameOnCard}
                         onChange={handleInputChange}
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -265,7 +265,7 @@ const Booking = () => {
                   )}
                   <button
                     type="submit"
-                    className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-md"
+                    className="flex-1 bg-[#FCEB00] text-gray-800 px-4 py-2 rounded-lg font-semibold hover:bg-[#FCEB00]/90 transition duration-300 shadow-md"
                   >
                     {step === 3 ? 'Confirm Booking' : 'Continue'}
                   </button>
@@ -276,7 +276,7 @@ const Booking = () => {
 
           {/* Order Summary */}
           <div className="md:col-span-1">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-6">
+            <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 sticky top-6">
               <h3 className="font-bold text-lg mb-4 text-gray-900">Order Summary</h3>
               
               <div className="mb-4">
@@ -290,7 +290,7 @@ const Booking = () => {
                 <p className="text-sm text-gray-500">{event.location}</p>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-[#FCEB00]/30 pt-4">
                 <div className="flex justify-between mb-2 text-gray-600">
                   <span>Ticket Price</span>
                   <span>${event.price} × {formData.tickets}</span>
@@ -303,9 +303,9 @@ const Booking = () => {
                   <span>Service Fee</span>
                   <span>$10</span>
                 </div>
-                <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-200 mt-2">
+                <div className="flex justify-between font-bold text-lg pt-2 border-t border-[#FCEB00]/30 mt-2">
                   <span className="text-gray-900">Total</span>
-                  <span className="text-blue-600">${totalAmount + 10}</span>
+                  <span className="text-[#FCEB00]">${totalAmount + 10}</span>
                 </div>
               </div>
             </div>

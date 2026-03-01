@@ -101,23 +101,23 @@ const Events = () => {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-[#FCEB00]/30 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#FCEB00] w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search events by name or location..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                className="w-full pl-10 pr-4 py-3 border border-[#FCEB00]/30 rounded-lg focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent bg-white"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex gap-2">
               <div className="relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#FCEB00] w-4 h-4" />
                 <select
-                  className="pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white appearance-none"
+                  className="pl-10 pr-8 py-3 border border-[#FCEB00]/30 rounded-lg focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent bg-white appearance-none"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
@@ -129,7 +129,7 @@ const Events = () => {
               {(searchTerm || selectedCategory !== 'All') && (
                 <button
                   onClick={clearFilters}
-                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2 text-gray-600"
+                  className="px-4 py-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 flex items-center gap-2 text-gray-600"
                 >
                   <X className="w-4 h-4" />
                   Clear
@@ -142,14 +142,14 @@ const Events = () => {
         {/* Results count */}
         <div className="mb-6">
           <p className="text-gray-600">
-            Showing <span className="font-semibold text-gray-900">{filteredEvents.length}</span> events
+            Showing <span className="font-semibold text-[#FCEB00]">{filteredEvents.length}</span> events
           </p>
         </div>
 
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.map((event) => (
-            <div key={event.id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition duration-300">
+            <div key={event.id} className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 overflow-hidden hover:shadow-md transition duration-300">
               <div className="h-48 overflow-hidden">
                 <img
                   src={event.image}
@@ -159,23 +159,23 @@ const Events = () => {
               </div>
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
-                  <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-[#FCEB00]/10 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
                     {event.category}
                   </span>
-                  <span className="text-2xl font-bold text-blue-600">{event.price}</span>
+                  <span className="text-2xl font-bold text-[#FCEB00]">{event.price}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">{event.title}</h3>
                 <div className="space-y-2 text-gray-600">
                   <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-2 text-gray-400" />
+                    <Calendar className="w-4 h-4 mr-2 text-[#FCEB00]" />
                     <span className="text-sm">{event.date}</span>
                   </div>
                   <div className="flex items-center">
-                    <Clock className="w-4 h-4 mr-2 text-gray-400" />
+                    <Clock className="w-4 h-4 mr-2 text-[#FCEB00]" />
                     <span className="text-sm">{event.time}</span>
                   </div>
                   <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2 text-gray-400" />
+                    <MapPin className="w-4 h-4 mr-2 text-[#FCEB00]" />
                     <span className="text-sm">{event.location}</span>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ const Events = () => {
                   </span>
                   <Link
                     to={`/event/${event.id}`}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 text-sm"
+                    className="bg-[#FCEB00] text-gray-800 px-4 py-2 rounded-lg hover:bg-[#FCEB00]/90 transition duration-300 text-sm"
                   >
                     View Details
                   </Link>
@@ -196,11 +196,11 @@ const Events = () => {
         </div>
 
         {filteredEvents.length === 0 && (
-          <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+          <div className="text-center py-12 bg-white rounded-xl border border-[#FCEB00]/30">
             <p className="text-gray-500 text-lg">No events found matching your criteria.</p>
             <button
               onClick={clearFilters}
-              className="mt-4 text-blue-600 hover:text-blue-700 font-semibold"
+              className="mt-4 text-[#FCEB00] hover:text-[#FCEB00]/80 font-semibold"
             >
               Clear filters
             </button>

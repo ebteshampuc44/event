@@ -1,164 +1,106 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, Ticket, User, Menu, LogIn } from 'lucide-react';
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
-    return (
-     <div className="navbar bg-white shadow-md border-b border-gray-100 px-4 md:px-8 py-2">
-        {/* Logo on left */}
-        <div className="navbar-start">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 w-8 h-8 rounded-lg flex items-center justify-center">
-              <Calendar className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              EventHub
-            </span>
-          </Link>
-        </div>
+  const [isOpen, setIsOpen] = useState(false);
 
-        {/* Centered Navigation */}
-        <div className="navbar-center hidden md:flex">
-          <div className="flex items-center gap-1 bg-gray-50 p-1 rounded-2xl">
-            <Link 
-              to="/events" 
-              className="px-5 py-2.5 text-sm font-medium text-gray-700 rounded-xl hover:bg-white hover:text-blue-600 hover:shadow-sm transition-all duration-200"
-            >
-              Events
-            </Link>
-            <Link 
-              to="/categories" 
-              className="px-5 py-2.5 text-sm font-medium text-gray-700 rounded-xl hover:bg-white hover:text-blue-600 hover:shadow-sm transition-all duration-200"
-            >
-              Categories
-            </Link>
-            <Link 
-              to="/pricing" 
-              className="px-5 py-2.5 text-sm font-medium text-gray-700 rounded-xl hover:bg-white hover:text-blue-600 hover:shadow-sm transition-all duration-200"
-            >
-              Pricing
-            </Link>
-            <Link 
-              to="/about" 
-              className="px-5 py-2.5 text-sm font-medium text-gray-700 rounded-xl hover:bg-white hover:text-blue-600 hover:shadow-sm transition-all duration-200"
-            >
-              About
-            </Link>
-          </div>
-        </div>
+  const navItems = [
+    { path: "/events", label: "Events" },
+    { path: "/categories", label: "Categories" },
+    { path: "/pricing", label: "Pricing" },
+    { path: "/about", label: "About" },
+  ];
 
-        {/* Right side - Cart, User, Login */}
-        <div className="navbar-end flex items-center gap-3">
-          {/* Cart Dropdown */}
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle relative">
-              <div className="indicator">
-                <div className="p-2 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                  <Ticket className="h-5 w-5 text-gray-700" />
-                </div>
-                <span className="badge badge-sm indicator-item bg-blue-600 text-white border-none -top-1 -right-1">2</span>
-              </div>
-            </div>
-            <div
-              tabIndex={0}
-              className="card card-compact dropdown-content bg-white z-50 mt-3 w-72 shadow-xl border border-gray-100">
-              <div className="card-body p-4">
-                <span className="text-base font-semibold text-gray-900">Shopping Cart (2)</span>
-                <div className="space-y-3 mt-2">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
-                      <img 
-                        src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                        alt="Event"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">Tech Summit 2024</p>
-                      <p className="text-xs text-gray-500">1 ticket · $299</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden">
-                      <img 
-                        src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                        alt="Event"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">Music Festival</p>
-                      <p className="text-xs text-gray-500">1 ticket · $149</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
-                  <span className="text-sm text-gray-600">Total</span>
-                  <span className="font-bold text-blue-600">$448</span>
-                </div>
-                <div className="card-actions mt-2">
-                  <button className="btn bg-blue-600 text-white hover:bg-blue-700 btn-block border-none shadow-md">
-                    View Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+  return (
+    <nav className="fixed top-4 left-0 right-0 z-50">
+      <div className="container mx-auto px-6">
 
-          {/* User Menu */}
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center shadow-md">
-                <span className="text-sm font-medium text-white">JD</span>
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white rounded-2xl z-50 mt-3 w-56 p-2 shadow-xl border border-gray-100">
-              <li className="menu-label px-3 py-2">
-                <span className="text-xs font-semibold text-gray-400">ACCOUNT</span>
-              </li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-2.5">My Profile</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-2.5">My Tickets</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-2.5">Wishlist</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-2.5">Settings</a></li>
-              <li className="border-t border-gray-100 mt-1 pt-1">
-                <a className="text-red-600 hover:text-red-700 hover:bg-red-50 rounded-xl py-2.5">Sign Out</a>
-              </li>
-            </ul>
-          </div>
+        {/* ===== Desktop ===== */}
+        <div className="hidden lg:flex items-center justify-between 
+        bg-[#FCEB00]/10 backdrop-blur-xl 
+        border border-[#FCEB00]/30 
+        shadow-[0_8px_32px_rgba(252,235,0,0.15)] 
+        rounded-full px-8 py-3 transition-all duration-300">
 
-          {/* Login Button (visible when not logged in) */}
-          <Link 
-            to="/login" 
-            className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg"
-          >
-            <LogIn className="h-4 w-4" />
-            <span className="text-sm font-medium">Login</span>
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold" style={{ color: '#FCEB00' }}>
+            Logo
           </Link>
 
-          {/* Mobile Menu */}
-          <div className="dropdown dropdown-end md:hidden">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-              <div className="p-2 bg-gray-50 rounded-xl">
-                <Menu className="h-5 w-5 text-gray-700" />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-white rounded-2xl z-50 mt-3 w-56 p-2 shadow-xl border border-gray-100">
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-3">Events</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-3">Categories</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-3">Pricing</a></li>
-              <li><a className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl py-3">About</a></li>
-              <li className="border-t border-gray-100 mt-1 pt-1">
-                <a className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl py-3 font-medium">Login</a>
-              </li>
-            </ul>
+          {/* Menu */}
+          <div className="flex items-center space-x-6">
+
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className="px-4 py-2 rounded-full font-medium text-gray-700 
+                hover:text-white hover:bg-[#FCEB00] 
+                transition-all duration-300"
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
+            {/* Sign In Button */}
+            <Link
+              to="/signin"
+              className="bg-[#FCEB00] text-gray-800 font-semibold py-2 px-6 rounded-full 
+              shadow-lg hover:shadow-[#FCEB00]/40 
+              hover:scale-105 transition-all duration-300"
+            >
+              Sign In
+            </Link>
+
           </div>
         </div>
+
+        {/* ===== Mobile ===== */}
+        <div className="flex lg:hidden justify-between items-center 
+        bg-[#FCEB00]/10 backdrop-blur-xl 
+        border border-[#FCEB00]/30 
+        shadow-xl rounded-full px-6 py-3">
+
+          <Link to="/" className="text-xl font-bold" style={{ color: '#FCEB00' }}>
+            Logo
+          </Link>
+
+          <button onClick={() => setIsOpen(!isOpen)} className="text-[#FCEB00] text-xl">
+            {isOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="lg:hidden mt-4 bg-white rounded-xl shadow-xl p-4 flex flex-col space-y-3 border border-[#FCEB00]/30">
+
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-2 rounded-lg text-gray-700 
+                hover:bg-[#FCEB00]/10 transition"
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
+            <Link
+              to="/signin"
+              onClick={() => setIsOpen(false)}
+              className="bg-[#FCEB00] text-gray-800 py-2 px-4 
+              rounded-lg text-center font-semibold hover:bg-[#FCEB00]/90"
+            >
+              Sign In
+            </Link>
+
+          </div>
+        )}
       </div>
-    );
+    </nav>
+  );
 };
 
 export default Navbar;
