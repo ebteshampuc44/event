@@ -161,7 +161,7 @@ const Booking = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full text-black border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -175,7 +175,7 @@ const Booking = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full border text-black border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -194,7 +194,7 @@ const Booking = () => {
                         value={formData.cardNumber}
                         onChange={handleInputChange}
                         placeholder="1234 5678 9012 3456"
-                        className="w-full border text-black border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
@@ -210,7 +210,7 @@ const Booking = () => {
                           value={formData.expiryDate}
                           onChange={handleInputChange}
                           placeholder="MM/YY"
-                          className="w-full border text-black border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -224,7 +224,7 @@ const Booking = () => {
                           value={formData.cvv}
                           onChange={handleInputChange}
                           placeholder="123"
-                          className="w-full text-black border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                          className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                           required
                         />
                       </div>
@@ -239,7 +239,7 @@ const Booking = () => {
                         name="nameOnCard"
                         value={formData.nameOnCard}
                         onChange={handleInputChange}
-                        className="w-full border text-black border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
+                        className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white"
                         required
                       />
                     </div>
