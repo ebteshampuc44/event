@@ -1,3 +1,4 @@
+// pages/Home.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin, ChevronRight, Star, Users, TrendingUp, Award, ArrowRight } from 'lucide-react';
@@ -35,6 +36,7 @@ const Home = () => {
   // Featured Events ডাটা
   const featuredEvents = [
     {
+      id: 1,
       title: "Tech Innovation Summit",
       date: "Mar 15-17, 2024",
       location: "San Francisco, CA",
@@ -44,6 +46,7 @@ const Home = () => {
       category: "Conference"
     },
     {
+      id: 2,
       title: "Summer Music Festival",
       date: "Jul 8-10, 2024",
       location: "Miami Beach, FL",
@@ -53,6 +56,7 @@ const Home = () => {
       category: "Music"
     },
     {
+      id: 3,
       title: "Food & Wine Expo",
       date: "Apr 5-7, 2024",
       location: "New York, NY",
@@ -62,6 +66,7 @@ const Home = () => {
       category: "Food"
     },
     {
+      id: 4,
       title: "Comedy Night Special",
       date: "Feb 20, 2024",
       location: "Chicago, IL",
@@ -71,6 +76,7 @@ const Home = () => {
       category: "Comedy"
     },
     {
+      id: 5,
       title: "Art & Design Expo",
       date: "May 5-8, 2024",
       location: "Los Angeles, CA",
@@ -80,6 +86,7 @@ const Home = () => {
       category: "Art"
     },
     {
+      id: 6,
       title: "Wellness Retreat",
       date: "Jun 12-15, 2024",
       location: "Boulder, CO",
@@ -90,31 +97,37 @@ const Home = () => {
     }
   ];
 
-  // Upcoming Events ডাটা
+  // Upcoming Events ডাটা (আপডেটেড with IDs)
   const upcomingEvents = [
     {
+      id: 1,
       title: "Digital Marketing Workshop",
       date: "Feb 25, 2024",
       time: "10:00 AM",
       location: "Online",
       price: "Free",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"
+      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80",
+      category: "Workshop"
     },
     {
+      id: 2,
       title: "Startup Networking Mixer",
       date: "Mar 2, 2024",
       time: "6:30 PM",
       location: "Austin, TX",
       price: "$25",
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
+      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+      category: "Networking"
     },
     {
+      id: 3,
       title: "Photography Masterclass",
       date: "Mar 10, 2024",
       time: "2:00 PM",
       location: "Seattle, WA",
       price: "$79",
-      image: "https://images.unsplash.com/photo-1554048612-b77c3c9e8c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      image: "https://images.unsplash.com/photo-1554048612-b77c3c9e8c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      category: "Workshop"
     }
   ];
 
@@ -176,7 +189,7 @@ const Home = () => {
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
       
-      {/* Hero Section - স্লাইডার (অপরিবর্তিত) */}
+      {/* Hero Section - স্লাইডার */}
       <section className="relative h-[600px] mx-4 sm:mx-8 lg:mx-12 mt-16 mb-8 rounded-3xl overflow-hidden shadow-2xl">
         
         {/* স্লাইড ইমেজ */}
@@ -258,7 +271,7 @@ const Home = () => {
 
       </section>
 
-      {/* Stats Section - নতুন */}
+      {/* Stats Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
@@ -278,7 +291,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Popular Categories - রিডিজাইন */}
+      {/* Popular Categories */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Popular Categories</h2>
@@ -340,7 +353,7 @@ const Home = () => {
           onScroll={handleScroll}
         >
           {/* CSS for hiding scrollbar */}
-          <style jsx>{`
+          <style>{`
             div::-webkit-scrollbar {
               display: none;
             }
@@ -389,7 +402,7 @@ const Home = () => {
                       <span className="text-gray-400 text-sm ml-1">/person</span>
                     </div>
                     <Link 
-                      to={`/event/${index + 1}`} 
+                      to={`/event/${event.id}`} 
                       className="bg-[#FCEB00] text-black px-6 py-2 rounded-full text-sm font-semibold hover:bg-[#FCEB00]/90 transition transform hover:scale-105"
                     >
                       Book Now
@@ -424,7 +437,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Upcoming Events Section - নতুন */}
+      {/* Upcoming Events Section - আপডেটেড with Links to Detail Pages */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Upcoming Events</h2>
@@ -432,8 +445,12 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {upcomingEvents.map((event, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group">
+          {upcomingEvents.map((event) => (
+            <Link
+              key={event.id}
+              to={`/upcoming-event/${event.id}`}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden group cursor-pointer"
+            >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={event.image} 
@@ -441,6 +458,11 @@ const Home = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-[#FCEB00] text-black text-xs font-bold px-3 py-1 rounded-full">
+                    {event.category}
+                  </span>
+                </div>
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center text-white text-sm">
                     <Calendar className="w-4 h-4 mr-2" />
@@ -460,21 +482,18 @@ const Home = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-[#FCEB00] font-bold text-lg">{event.price}</span>
-                  <Link 
-                    to={`/event/upcoming/${index + 1}`}
-                    className="text-sm font-semibold text-gray-700 hover:text-[#FCEB00] transition-colors flex items-center"
-                  >
-                    Learn More
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Link>
+                  <span className="text-sm font-semibold text-gray-700 group-hover:text-[#FCEB00] transition-colors flex items-center">
+                    View Details
+                    <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
 
-      {/* CTA Section - নতুন */}
+      {/* CTA Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-gradient-to-r from-[#FCEB00] to-yellow-400 rounded-3xl p-12 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black/5"></div>
@@ -486,7 +505,7 @@ const Home = () => {
               className="inline-flex items-center bg-black text-[#FCEB00] px-8 py-3 rounded-full font-semibold hover:bg-gray-900 transition-all transform hover:scale-105"
             >
               Start Creating
-              <ChevronRight className="w-5 h-5 ml-2" />
+              <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

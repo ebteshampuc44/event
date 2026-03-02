@@ -1,3 +1,4 @@
+// pages/Events.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Clock, Search, Filter, X } from 'lucide-react';
@@ -92,7 +93,7 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -122,14 +123,14 @@ const Events = () => {
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
                   {categories.map(category => (
-                    <option key={category} value={category}>{category}</option>
+                    <option key={category} value={category} className="text-black">{category}</option>
                   ))}
                 </select>
               </div>
               {(searchTerm || selectedCategory !== 'All') && (
                 <button
                   onClick={clearFilters}
-                  className="px-4 py-2  border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 flex items-center gap-2 text-gray-600"
+                  className="px-4 py-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 flex items-center gap-2 text-gray-600"
                 >
                   <X className="w-4 h-4" />
                   Clear
