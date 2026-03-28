@@ -43,8 +43,8 @@ const SignIn = () => {
           <div className="inline-block p-3 bg-[#FCEB00] rounded-full mb-4">
             <LogIn className="w-8 h-8 text-gray-800" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back!</h1>
-          <p className="text-gray-600">Sign in to continue to Corn's Event</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back!</h1>
+          <p className="text-gray-700">Sign in to continue to Corn's Event</p>
         </div>
 
         {/* Sign In Card */}
@@ -56,12 +56,12 @@ const SignIn = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-800 mb-2">
                   Email Address
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Mail className="h-5 w-5 text-gray-400" />
+                    <Mail className="h-5 w-5 text-gray-500" />
                   </div>
                   <input
                     type="email"
@@ -69,7 +69,7 @@ const SignIn = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent transition-all duration-300"
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent transition-all duration-300 text-gray-900 placeholder:text-gray-400"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -77,12 +77,12 @@ const SignIn = () => {
 
               {/* Password Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-800 mb-2">
                   Password
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
+                    <Lock className="h-5 w-5 text-gray-500" />
                   </div>
                   <input
                     type={showPassword ? "text" : "password"}
@@ -90,7 +90,7 @@ const SignIn = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent transition-all duration-300"
+                    className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FCEB00] focus:border-transparent transition-all duration-300 text-gray-900 placeholder:text-gray-400"
                     placeholder="••••••••"
                   />
                   <button
@@ -99,9 +99,9 @@ const SignIn = () => {
                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      <EyeOff className="h-5 w-5 text-gray-500 hover:text-gray-700" />
                     ) : (
-                      <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      <Eye className="h-5 w-5 text-gray-500 hover:text-gray-700" />
                     )}
                   </button>
                 </div>
@@ -117,7 +117,7 @@ const SignIn = () => {
                     onChange={handleChange}
                     className="w-4 h-4 text-[#FCEB00] border-gray-300 rounded focus:ring-[#FCEB00]"
                   />
-                  <span className="text-sm text-gray-600">Remember me</span>
+                  <span className="text-sm text-gray-700">Remember me</span>
                 </label>
                 <Link
                   to="/forgot-password"
@@ -153,7 +153,7 @@ const SignIn = () => {
                 <div className="w-full border-t border-gray-300"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">Or continue with</span>
+                <span className="px-4 bg-white text-gray-600">Or continue with</span>
               </div>
             </div>
 
@@ -171,7 +171,7 @@ const SignIn = () => {
             </div>
 
             {/* Sign Up Link */}
-            <p className="text-center mt-8 text-gray-600">
+            <p className="text-center mt-8 text-gray-700">
               Don't have an account?{' '}
               <Link
                 to="/signup"

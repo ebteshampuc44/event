@@ -56,66 +56,66 @@ const EventDetail = () => {
             <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 mb-6">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <span className="bg-[#FCEB00]/10 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-[#FCEB00]/10 text-black px-3 py-1 rounded-full text-sm font-semibold">
                     {event.category}
                   </span>
-                  <h1 className="text-3xl font-bold mt-3 text-gray-900">{event.title}</h1>
+                  <h1 className="text-3xl font-bold mt-3 text-black">{event.title}</h1>
                 </div>
                 <div className="flex gap-2">
-                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-gray-600">
+                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-black">
                     <Share2 className="w-5 h-5" />
                   </button>
-                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-gray-600">
+                  <button className="p-2 border border-[#FCEB00]/30 rounded-lg hover:bg-[#FCEB00]/10 text-black">
                     <Heart className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-black">
                   <Calendar className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
-                    <p className="text-sm text-gray-500">Date</p>
-                    <p className="font-medium text-gray-900">{event.date}</p>
+                    <p className="text-sm text-black/70">Date</p>
+                    <p className="font-medium text-black">{event.date}</p>
                   </div>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-black">
                   <Clock className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
-                    <p className="text-sm text-gray-500">Time</p>
-                    <p className="font-medium text-gray-900">{event.time}</p>
+                    <p className="text-sm text-black/70">Time</p>
+                    <p className="font-medium text-black">{event.time}</p>
                   </div>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-black">
                   <MapPin className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
-                    <p className="text-sm text-gray-500">Location</p>
-                    <p className="font-medium text-gray-900">{event.location}</p>
+                    <p className="text-sm text-black/70">Location</p>
+                    <p className="font-medium text-black">{event.location}</p>
                   </div>
                 </div>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-black">
                   <Users className="w-5 h-5 mr-2 text-[#FCEB00]" />
                   <div>
-                    <p className="text-sm text-gray-500">Organizer</p>
-                    <p className="font-medium text-gray-900">{event.organizer}</p>
+                    <p className="text-sm text-black/70">Organizer</p>
+                    <p className="font-medium text-black">{event.organizer}</p>
                   </div>
                 </div>
               </div>
 
               <div className="border-t border-[#FCEB00]/30 pt-6">
-                <h2 className="text-xl font-bold mb-4 text-gray-900">About This Event</h2>
-                <p className="text-gray-600 leading-relaxed">{event.description}</p>
+                <h2 className="text-xl font-bold mb-4 text-black">About This Event</h2>
+                <p className="text-black leading-relaxed">{event.description}</p>
               </div>
             </div>
 
             {/* Schedule */}
             <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 mb-6">
-              <h2 className="text-xl font-bold mb-4 text-gray-900">Schedule</h2>
+              <h2 className="text-xl font-bold mb-4 text-black">Schedule</h2>
               <div className="space-y-3">
                 {event.schedule.map((item, index) => (
                   <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                    <span className="font-semibold w-24 text-gray-900">{item.time}</span>
-                    <span className="text-gray-600">{item.activity}</span>
+                    <span className="font-semibold w-24 text-black">{item.time}</span>
+                    <span className="text-black">{item.activity}</span>
                   </div>
                 ))}
               </div>
@@ -123,7 +123,7 @@ const EventDetail = () => {
 
             {/* Speakers */}
             <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6">
-              <h2 className="text-xl font-bold mb-4 text-gray-900">Speakers</h2>
+              <h2 className="text-xl font-bold mb-4 text-black">Speakers</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {event.speakers.map((speaker, index) => (
                   <div key={index} className="text-center p-4 border border-[#FCEB00]/30 rounded-lg hover:shadow-md transition">
@@ -132,8 +132,8 @@ const EventDetail = () => {
                         {speaker.name.charAt(0)}
                       </span>
                     </div>
-                    <h3 className="font-bold text-gray-900">{speaker.name}</h3>
-                    <p className="text-sm text-gray-500">{speaker.role}</p>
+                    <h3 className="font-bold text-black">{speaker.name}</h3>
+                    <p className="text-sm text-black/70">{speaker.role}</p>
                     <p className="text-sm text-[#FCEB00]">{speaker.company}</p>
                   </div>
                 ))}
@@ -146,12 +146,12 @@ const EventDetail = () => {
             <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-6 sticky top-6">
               <div className="text-center mb-6">
                 <span className="text-3xl font-bold text-[#FCEB00]">{event.price}</span>
-                <span className="text-gray-500"> per person</span>
+                <span className="text-black/70"> per person</span>
               </div>
 
               <div className="mb-6">
                 <div className="flex justify-between mb-2">
-                  <span className="text-gray-600">Availability</span>
+                  <span className="text-black/70">Availability</span>
                   <span className="font-semibold text-green-600">{event.availableTickets} tickets left</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -162,20 +162,45 @@ const EventDetail = () => {
                 </div>
               </div>
 
+              {/* Number of Tickets Field - Text Black */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Number of Tickets
                 </label>
-                <select className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white">
+                <select className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white text-black">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
                     <option key={num} value={num}>{num} ticket{num > 1 ? 's' : ''}</option>
                   ))}
                 </select>
               </div>
 
+              {/* Email Address Field - Added */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-black mb-2">
+                  Email Address
+                </label>
+                <input 
+                  type="email" 
+                  placeholder="your@email.com"
+                  className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white text-black placeholder:text-black/50"
+                />
+              </div>
+
+              {/* Phone Number Field - Added */}
+              <div className="mb-6">
+                <label className="block text-sm font-medium text-black mb-2">
+                  Phone Number
+                </label>
+                <input 
+                  type="tel" 
+                  placeholder="+880 1234 567890"
+                  className="w-full border border-[#FCEB00]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#FCEB00] bg-white text-black placeholder:text-black/50"
+                />
+              </div>
+
               <Link
                 to={`/booking/${event.id}`}
-                className="block w-full bg-[#FCEB00] text-gray-800 text-center px-6 py-3 rounded-lg font-semibold hover:bg-[#FCEB00]/90 transition duration-300 mb-4 shadow-md"
+                className="block w-full bg-[#FCEB00] text-black text-center px-6 py-3 rounded-lg font-semibold hover:bg-[#FCEB00]/90 transition duration-300 mb-4 shadow-md"
               >
                 Book Now
               </Link>
@@ -185,8 +210,8 @@ const EventDetail = () => {
               </button>
 
               <div className="mt-6 pt-6 border-t border-[#FCEB00]/30">
-                <h3 className="font-semibold mb-3 text-gray-900">What's included:</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
+                <h3 className="font-semibold mb-3 text-black">What's included:</h3>
+                <ul className="space-y-2 text-sm text-black/70">
                   <li className="flex items-center">
                     <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                     Full access to all sessions
