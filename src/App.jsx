@@ -1,5 +1,6 @@
 // App.jsx
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Root from './Root';
 import Home from './pages/Home';
 import Events from './pages/Events';
@@ -12,22 +13,36 @@ import OrganizerDashboard from './pages/OrganizerDashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
+// ScrollToTop কম্পোনেন্ট直接在 App এর ভিতরে তৈরি করুন
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Root />}>
-        <Route index element={<Home />} />
-        <Route path="events" element={<Events />} />
-        <Route path="event/:id" element={<EventDetail />} />
-        <Route path="booking/:id" element={<Booking />} />
-        <Route path="upcoming-event/:id" element={<UpcomingEventDetail />} />
-        <Route path="about" element={<About />} />
-        <Route path="organizer" element={<OrganizerBooking />} />
-        <Route path="organizer-dashboard" element={<OrganizerDashboard />} />
-        <Route path="signin" element={<SignIn />} />
-        <Route path="signup" element={<SignUp />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Root />}>
+          <Route index element={<Home />} />
+          <Route path="events" element={<Events />} />
+          <Route path="event/:id" element={<EventDetail />} />
+          <Route path="booking/:id" element={<Booking />} />
+          <Route path="upcoming-event/:id" element={<UpcomingEventDetail />} />
+          <Route path="about" element={<About />} />
+          <Route path="organizer" element={<OrganizerBooking />} />
+          <Route path="organizer-dashboard" element={<OrganizerDashboard />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
