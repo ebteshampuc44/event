@@ -13,7 +13,6 @@ import OrganizerDashboard from './pages/OrganizerDashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
-// ScrollToTop কম্পোনেন্ট直接在 App এর ভিতরে তৈরি করুন
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 

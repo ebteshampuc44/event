@@ -1,107 +1,187 @@
 // pages/Events.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Clock, Search, Filter, X } from 'lucide-react';
+import { Calendar, MapPin, Clock, Search, Filter, X, Loader } from 'lucide-react';
+import api from '../services/api';
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedDate, setSelectedDate] = useState('');
+  const [categories, setCategories] = useState(['All']);
 
-  const events = [
-    {
-      id: 1,
-      title: "Tech Innovation Summit 2024",
-      date: "March 15-17, 2024",
-      time: "9:00 AM - 6:00 PM",
-      location: "San Francisco Convention Center",
-      price: "$299",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      category: "Conference",
-      availableTickets: 150
-    },
-    {
-      id: 2,
-      title: "Summer Music Festival",
-      date: "July 8-10, 2024",
-      time: "2:00 PM - 11:00 PM",
-      location: "Central Park, NYC",
-      price: "$149",
-      image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      category: "Music",
-      availableTickets: 500
-    },
-    {
-      id: 3,
-      title: "Food & Wine Expo",
-      date: "April 5-7, 2024",
-      time: "11:00 AM - 9:00 PM",
-      location: "McCormick Place, Chicago",
-      price: "$89",
-      image: "https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      category: "Food & Drink",
-      availableTickets: 300
-    },
-    {
-      id: 4,
-      title: "Digital Marketing Workshop",
-      date: "February 20, 2024",
-      time: "10:00 AM - 4:00 PM",
-      location: "Online (Zoom)",
-      price: "$49",
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80",
-      category: "Workshop",
-      availableTickets: 100
-    },
-    {
-      id: 5,
-      title: "Jazz Night",
-      date: "March 2, 2024",
-      time: "7:00 PM - 11:00 PM",
-      location: "Blue Note Jazz Club, NYC",
-      price: "$75",
-      image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80",
-      category: "Music",
-      availableTickets: 80
-    },
-    {
-      id: 6,
-      title: "Startup Pitch Competition",
-      date: "March 10, 2024",
-      time: "1:00 PM - 6:00 PM",
-      location: "WeWork, Austin",
-      price: "Free",
-      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      category: "Conference",
-      availableTickets: 200
+  useEffect(() => {
+    fetchEvents();
+    fetchCategories();
+  }, []);
+
+  const fetchEvents = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      console.log('🔍 API Base URL:', api.defaults.baseURL);
+      console.log('🔍 Fetching events from API...');
+      
+      const response = await api.get('/events');
+      console.log('📦 Full API Response:', response);
+      console.log('📄 Response data:', response.data);
+      
+      // Handle different response formats
+      let eventsData = [];
+      
+      if (response.data && response.data.success) {
+        eventsData = response.data.data || [];
+      } else if (response.data && Array.isArray(response.data.data)) {
+        eventsData = response.data.data;
+      } else if (Array.isArray(response.data)) {
+        eventsData = response.data;
+      } else if (response.data && response.data.events) {
+        eventsData = response.data.events;
+      } else {
+        eventsData = [];
+      }
+      
+      console.log('✅ Events loaded:', eventsData.length, 'events');
+      setEvents(eventsData);
+      
+    } catch (err) {
+      console.error('❌ Error fetching events:', err);
+      
+      let errorMessage = 'Failed to load events. ';
+      
+      if (err.code === 'ECONNABORTED') {
+        errorMessage += 'Request timeout. Please check your connection.';
+      } else if (err.message === 'Network Error') {
+        errorMessage += `Cannot connect to server. Make sure Laravel is running on ${api.defaults.baseURL}`;
+      } else if (err.response) {
+        if (err.response.status === 404) {
+          errorMessage += 'API endpoint not found. Please check if Laravel is running.';
+        } else if (err.response.status === 500) {
+          errorMessage += 'Server error. Please check Laravel logs.';
+        } else {
+          errorMessage += `Server error: ${err.response.status}`;
+        }
+        console.error('Server response:', err.response.data);
+      } else {
+        errorMessage += err.message;
+      }
+      
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
-  const categories = ['All', 'Conference', 'Music', 'Workshop', 'Food & Drink'];
+  const fetchCategories = async () => {
+    try {
+      console.log('🔍 Fetching categories...');
+      const response = await api.get('/categories');
+      console.log('📦 Categories response:', response.data);
+      
+      let categoriesData = [];
+      
+      if (response.data && response.data.success && response.data.data) {
+        categoriesData = response.data.data;
+      } else if (Array.isArray(response.data)) {
+        categoriesData = response.data;
+      } else if (response.data && response.data.categories) {
+        categoriesData = response.data.categories;
+      }
+      
+      if (categoriesData.length > 0) {
+        setCategories(['All', ...categoriesData.map(cat => cat.name)]);
+      } else {
+        // Fallback categories
+        setCategories(['All', 'Conference', 'Music', 'Workshop', 'Food & Drink']);
+      }
+      
+    } catch (err) {
+      console.error('❌ Error fetching categories:', err);
+      setCategories(['All', 'Conference', 'Music', 'Workshop', 'Food & Drink']);
+    }
+  };
 
   const filteredEvents = events.filter(event => {
-    const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         event.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
+    const matchesSearch = event.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         event.location?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || event.category?.name === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   const clearFilters = () => {
     setSearchTerm('');
     setSelectedCategory('All');
-    setSelectedDate('');
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-24 pb-12 flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="w-12 h-12 text-[#FCEB00] animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading events...</p>
+          <p className="text-sm text-gray-400 mt-2">Connecting to {api.defaults.baseURL}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+            <p className="text-red-600 font-semibold mb-2">Error Loading Events</p>
+            <p className="text-red-600 mb-4">{error}</p>
+            <div className="bg-gray-100 p-4 rounded-lg mb-4 text-left">
+              <p className="text-sm text-gray-600 mb-1">Debug Info:</p>
+              <p className="text-xs text-gray-500">API URL: {api.defaults.baseURL}/events</p>
+              <p className="text-xs text-gray-500">Make sure Laravel is running: php artisan serve --host=192.168.68.110 --port=8000</p>
+              <p className="text-xs text-gray-500 mt-2">To test API, open in browser:</p>
+              <p className="text-xs text-blue-600">{api.defaults.baseURL}/events</p>
+            </div>
+            <button
+              onClick={fetchEvents}
+              className="mt-4 bg-[#FCEB00] text-gray-800 px-6 py-2 rounded-lg hover:bg-[#FCEB00]/90"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (events.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold mb-4 text-gray-900">Discover Events</h1>
+            <p className="text-xl text-gray-600">Find and book tickets for amazing events near you</p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 p-12 text-center">
+            <Calendar className="w-16 h-16 text-[#FCEB00] mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No Events Found</h3>
+            <p className="text-gray-500 mb-4">There are no events available at the moment.</p>
+            <p className="text-sm text-gray-400">Check back later for exciting events!</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 text-gray-900">Discover Events</h1>
           <p className="text-xl text-gray-600">Find and book tickets for amazing events near you</p>
         </div>
 
-        {/* Search and Filter */}
+        {/* Search and Filter Section */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-[#FCEB00]/30 mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
@@ -123,7 +203,7 @@ const Events = () => {
                   onChange={(e) => setSelectedCategory(e.target.value)}
                 >
                   {categories.map(category => (
-                    <option key={category} value={category} className="text-black">{category}</option>
+                    <option key={category} value={category}>{category}</option>
                   ))}
                 </select>
               </div>
@@ -140,7 +220,7 @@ const Events = () => {
           </div>
         </div>
 
-        {/* Results count */}
+        {/* Results Count */}
         <div className="mb-6">
           <p className="text-gray-600">
             Showing <span className="font-semibold text-[#FCEB00]">{filteredEvents.length}</span> events
@@ -150,26 +230,38 @@ const Events = () => {
         {/* Events Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredEvents.map((event) => (
-            <div key={event.id} className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 overflow-hidden hover:shadow-md transition duration-300">
-              <div className="h-48 overflow-hidden">
+            <div key={event.id} className="bg-white rounded-xl shadow-sm border border-[#FCEB00]/30 overflow-hidden hover:shadow-md transition duration-300 group">
+              <div className="h-48 overflow-hidden relative">
                 <img
-                  src={event.image}
+                  src={event.image ? `http://192.168.68.110:8000/storage/${event.image}` : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'}
                   alt={event.title}
-                  className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  onError={(e) => {
+                    e.target.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80';
+                  }}
                 />
+                {event.is_featured && (
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-[#FCEB00] text-gray-800 text-xs font-bold px-2 py-1 rounded-full">
+                      Featured
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <span className="bg-[#FCEB00]/10 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
-                    {event.category}
+                    {event.category?.name || 'Uncategorized'}
                   </span>
-                  <span className="text-2xl font-bold text-[#FCEB00]">{event.price}</span>
+                  <span className="text-2xl font-bold text-[#FCEB00]">
+                    {event.price === 0 ? 'Free' : `$${event.price}`}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">{event.title}</h3>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 line-clamp-1">{event.title}</h3>
                 <div className="space-y-2 text-gray-600">
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2 text-[#FCEB00]" />
-                    <span className="text-sm">{event.date}</span>
+                    <span className="text-sm">{new Date(event.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                   </div>
                   <div className="flex items-center">
                     <Clock className="w-4 h-4 mr-2 text-[#FCEB00]" />
@@ -177,16 +269,16 @@ const Events = () => {
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-2 text-[#FCEB00]" />
-                    <span className="text-sm">{event.location}</span>
+                    <span className="text-sm line-clamp-1">{event.location}</span>
                   </div>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-sm text-gray-500">
-                    {event.availableTickets} tickets left
+                    {event.available_tickets} tickets left
                   </span>
                   <Link
                     to={`/event/${event.id}`}
-                    className="bg-[#FCEB00] text-gray-800 px-4 py-2 rounded-lg hover:bg-[#FCEB00]/90 transition duration-300 text-sm"
+                    className="bg-[#FCEB00] text-gray-800 px-4 py-2 rounded-lg hover:bg-[#FCEB00]/90 transition duration-300 text-sm font-medium"
                   >
                     View Details
                   </Link>
@@ -195,18 +287,6 @@ const Events = () => {
             </div>
           ))}
         </div>
-
-        {filteredEvents.length === 0 && (
-          <div className="text-center py-12 bg-white rounded-xl border border-[#FCEB00]/30">
-            <p className="text-gray-500 text-lg">No events found matching your criteria.</p>
-            <button
-              onClick={clearFilters}
-              className="mt-4 text-[#FCEB00] hover:text-[#FCEB00]/80 font-semibold"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
